@@ -359,7 +359,6 @@ export default {
 				return this.config.isDefaultInternalExpireDateEnforced || !!this.share.expireDate
 			},
 			set (enabled) {
-				alert(enabled)
 				this.share.expireDate = enabled
 					? this.config.defaultInternalExpirationDateString !== ''
 						? this.config.defaultInternalExpirationDateString
@@ -369,11 +368,6 @@ export default {
 		},
 		hasHasAccessible: {
 			get () {
-				console.log("this.share");
-				console.log(this.share.is_accessible);
-				alert(this.share._share.is_accessible)
-				// console.log("FUCK");
-				// console.log(this.share);
 				if (this.share._share.is_accessible === "1"){
 					return true;
 				}
