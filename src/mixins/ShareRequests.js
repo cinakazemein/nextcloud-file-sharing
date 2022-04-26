@@ -150,8 +150,6 @@ export default {
 		async getAccess (id) {
 			try {
 				const access = await axios.get(shareUrl + `/accessible/${id}`);
-				console.log("SHARED REQUESTS")
-				console.log(access.data.result.is_accessible)
 				return access.data.result.is_accessible;
 			} catch (error) {
 				return true
