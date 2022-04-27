@@ -70,7 +70,43 @@ window.addEventListener('DOMContentLoaded', function () {
 			}
 		})
 	}, 2000)
-	console.log("ARRAY");
-	console.log(unAccessiblePaths);
 
 })
+$('.nav-icon-shareoverview').click(function (e) {
+	let unAccessiblePaths = [];
+
+	$.ajax({
+		url: generateOcsUrl('apps/files_sharing/api/v1/shares?format=json&shared_with_me=true&include_tags=true'),
+		params: {
+			format: "json",
+			shared_with_me: true,
+			include_tags: true,
+		},
+		type: 'GET',
+		dataType: 'json', // added data type
+		async: false,
+		success: function (res) {
+			const data = res.ocs.data;
+			data.forEach(item => {
+				if (item.is_accessible === false) {
+					unAccessiblePaths.push(item.path);
+				}
+			});
+		}
+	});
+	setTimeout(function () {
+		let tds = document.querySelectorAll('#fileList .filename>a');
+		tds.forEach(item => {
+			// file a tag dont have dir query string so they are always not splitted and has one element
+			let hrefSplitted = item.href.split('?dir=/');
+			if (hrefSplitted.length > 1) {
+				if (unAccessiblePaths.includes(hrefSplitted[1]) || unAccessiblePaths.includes('/' + hrefSplitted[1])) {
+					item.style.pointerEvents = "none";
+					item.style.cursor = "default";
+					item.href = "#";
+				}
+
+			}
+		})
+	}, 2000)
+});
