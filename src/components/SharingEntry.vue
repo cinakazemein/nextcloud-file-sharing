@@ -132,7 +132,7 @@
                               @submit="onNoteSubmit"/>
         </template>
       </template>
-      <ActionCheckbox :checked.sync="hasHasAccessible">
+      <ActionCheckbox :checked.sync="hasHasAccessible" v-if="share._share.uid_file_owner === share._share.current_user">
         is accessible
       </ActionCheckbox>
 
@@ -381,6 +381,7 @@ export default {
       },
       set (enabled) {
         this.updateIsAccessible(enabled);
+        location.reload();
       },
     },
 
@@ -430,10 +431,9 @@ export default {
       this.accessibleUpdate(isAccessible)
     },
     async getIsAccessible () {
-      let mm = await this.accessibleGet();
-      return mm;
+      return await this.accessibleGet();
     }
-  },
+  }
 }
 </script>
 

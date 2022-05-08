@@ -103,6 +103,7 @@ return [
 		/*
 		 * OCS Share API
 		 */
+
 		[
 			'name' => 'ShareAPI#getShares',
 			'url' => '/api/v1/shares',
@@ -132,6 +133,11 @@ return [
 			'name' => 'ShareAPI#updateShare',
 			'url' => '/api/v1/shares/{id}',
 			'verb' => 'PUT',
+		],
+		[
+			'name' => 'ShareAPI#getIsInAccessibleByPath',
+			'url' => '/api/v1/shares/is_in_accessible_by_path',
+			'verb' => 'POST',
 		],
 		[
 			'name' => 'ShareAPI#updateIsAccessible',
@@ -214,3 +220,4 @@ return [
 		],
 	],
 ];
+

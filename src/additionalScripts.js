@@ -34,12 +34,12 @@ __webpack_nonce__ = btoa(OC.requestToken)
 
 window.OCA.Sharing = OCA.Sharing
 
-$(function() {
-	makeInaccessibleFoldersUnclickable();
-});
-$('.nav-icon-shareoverview').click(function (e) {
-	makeInaccessibleFoldersUnclickable();
-});
+// $(function () {
+// 	makeInaccessibleFoldersUnclickable();
+// });
+// $('.nav-icon-shareoverview').click(function (e) {
+// 	makeInaccessibleFoldersUnclickable();
+// });
 
 function makeInaccessibleFoldersUnclickable () {
 	let unAccessiblePaths = [];
@@ -78,4 +78,17 @@ function makeInaccessibleFoldersUnclickable () {
 		})
 	}, 2000)
 }
+
+function sohrab () {
+	$.ajax({
+		url: generateOcsUrl('apps/files_sharing/api/v1/shares/accessible/haji'),
+		type: 'GET',
+		dataType: 'json', // added data type
+		async: false,
+		success: function (res) {
+			const data = res.ocs.data;
+		}
+	})
+}
+
 
